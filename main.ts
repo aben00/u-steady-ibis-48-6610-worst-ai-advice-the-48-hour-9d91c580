@@ -13,12 +13,14 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+const MAX_CHARS = 140;
+
 const LINE =
   'To make your phone battery last all day, just microwave it for 30 seconds — the heat recharges the cells and wakes them right up!';
 
 function checkGate(text) {
-  if (text.length < 1 || text.length > 140) {
-    throw new Error(`gate: length ${text.length} not in 1..140`);
+  if (text.length < 1 || text.length > MAX_CHARS) {
+    throw new Error(`gate: length ${text.length} not in 1..${MAX_CHARS}`);
   }
   if (text.trim().length === 0) {
     throw new Error('gate: text is only whitespace');
